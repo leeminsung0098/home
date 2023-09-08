@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.member">
+
+<select id="selectAll" resultType ="MemberVO">
+	SELECT * FROM MEMBER ORDER BY USER_UID DESC
+</select>
+
+<select id="selectOne" parameterType="string" resultType ="MemberVO">
+	select * from member where by user_uid = #{user_uid}
+</select>
+
+<insert id="insertOne" parameterType ="MemberVO">
+	insert into member (user_uid, id, password, name, email, phonenum, burth, regDate) values (member_seq.nextval, #{id}, #{name}, #{email}, #{phonenum}, #{burth}, #{regDate})
+</insert>
+
+<update id="updateOne" parameterType="MemberVO">
+	update member set email = #{email}, phonenum = #{phonenum}, burth = #{burth} where user_uid = #{user_uid}
+</update>
+
+<delete id="deleteOne" parameterType ="MemberVO">
+	delete from member where user_uid = #{user_uid}
+</delete>
+
+</mapper>
